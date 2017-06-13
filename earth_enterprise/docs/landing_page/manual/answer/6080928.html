@@ -24,6 +24,7 @@
 <li><a href="#apply_cert">Apply third-party/CA-verified certificates and keys</a></li>
 <li><a href="#setup_ssl">Setting up SSL/HTTPS</a></li>
 <li><a href="#set_vh_ssl">Set your virtual host as a SSL server</a></li>
+<li><a href="#set_vh_ssl">SSLProtocol Settings</a></li>
 </ul>
 <h2><a name="requirements"></a>Requirements</h2>
 <ul class="spaced-list">
@@ -141,5 +142,25 @@ All commands must be executed as the root user unless otherwise specified.
 <li>Test the connections with Google Earth Enterprise Client for HTTP and HTTPS-based virtual servers.</li>
 </li></ol>
 <hr>
+
+<h2><a name="set_vh_ssl"></a>SSLProtocol settings in Google Earth specific files</h2>
+<h3>To change the SSL/TLS settings on Apache server:</h3>
+<ol class="spaced-list">
+<li>Edit the Google earth specific security configuration file, <code>/opt/google/gehttpd/conf.d/security.conf</code> file, as follows:
+<ol class="spaced-list">
+<li>For enabling all available SSL Settings <code>SSLProtocol All</code>
+</li>
+<li>For +SSLv3 +TLSv1 only <code>SSLProtocol -ALL +SSLv3 +TLSv1</code>
+</li>
+<li>For enabling SSLv3, TLSv1 and TLSv1.2 <code>SSLProtocol -ALL +SSLv3 +TLSv1.2 +TLSv1 </code></li>
+</ol>
+</li>
+<li>Save and close the <code>/opt/google/gehttpd/conf.d/security.conf</code> file. </li>
+<li>Restart the Google Earth Enterprise Server software:
+<p><code>sudo /etc/init.d/geserver restart</code></p>
+</li>
+</ol>
+<hr>
+
 </hr></hr></hr></p><div class="footer"><p class="BackToTop"><a href="#top_of_file">Back to top</a> <hr /></p> <p class="copyright">&copy;2015 Google</p></div>
 </div></body> </html>
